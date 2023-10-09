@@ -1,0 +1,23 @@
+{
+  "name": "companyreview",
+  "version": "1.0.0",
+  "description": "This project involves the development of a company review form that securely stores all submitted data within a database. It incorporates various functionalities, including the ability to display all company reviews, delete specific reviews, and edit existing reviews. This project leverages technologies such as Express.js, JavaScript, HTML, and CSS to create a robust and user-friendly web application for managing and interacting with company reviews.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AjayMorde/Company-review.git"
+  },
+  "author": "AjayMore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AjayMorde/Company-review/issues"
+  },
+  "homepage": "https://github.com/AjayMorde/Company-review#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
