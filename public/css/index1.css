@@ -1,0 +1,77 @@
+header {
+    background-color: #333; 
+    position: fixed; 
+    width: 100%; 
+    top: 0;
+    left: 0;
+    height: 60px; 
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center; 
+}
+
+nav ul {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+    display: flex; 
+}
+
+nav li {
+    margin: 0 10px; 
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s; 
+}
+
+nav a:hover {
+    color: #ff6600; 
+}
+
+#head {
+text-align: center; 
+font-size: 36px; 
+margin-bottom: 20px; 
+color: #333; 
+}
+
+
+#showReviewsButton {
+background-color: #007BFF; 
+color: #fff; 
+padding: 10px 20px; 
+font-size: 16px; 
+border: none; 
+cursor: pointer; 
+}
+
+#showReviewsButton:hover {
+background-color: #0056b3; 
+}
+
+/* Style for the reviews container */
+#reviews {
+margin-top: 20px; 
+font-size: 18px; 
+color: #333; 
+}
+#reviews div {
+background-color: #f5f5f5;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-radius: 5px;
+box-shadow: 3px 3px 5px #888888;
+font-size: 16px;
+color: #333;
+}
+
+.delete-button {
+background-color: red;
+color: white; 
+
+}

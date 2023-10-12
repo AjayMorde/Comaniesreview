@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Reviews</title>
+    <link rel="stylesheet" href="./css/index1.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/public/index.html">Submit Review</a>
+                </li>
+                <li>
+                    <a href="/public/index1.html">Watch All Reviews</a>
+                </li>
+                <li>
+                    <a href="/public/index2.html">Search Review</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <br><br>
+    <h1>Company Reviews</h1>
+    <button id="showReviewsButton">Show All Reviews</button>
+    <div id="reviews"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const reviewsContainer = document.getElementById('reviews');
+        const showReviewsButton = document.getElementById('showReviewsButton');
+
+        showReviewsButton.addEventListener('click', getAllReviews);
+
+        async function getAllReviews() {
+            try {
+                const response = await axios.get('http://localhost:3000/show-all-reviews/showreview');
+                const reviews = response.data.reviews;
+                displayReviews(reviews);
+            } catch (error) {
+                console.error('errors occure:', error);
+                reviewsContainer.textContent = 'errors occure.';
+            }
+        }
+
+        function displayReviews(reviews) {
+            if (reviews.length === 0) {
+                reviewsContainer.textContent = 'no reviews available.';
+            } else {
+                reviewsContainer.innerHTML = ''; 
+                reviews.forEach(review => {
+                    const reviewElement = createReviewElement(review);
+                    reviewsContainer.appendChild(reviewElement);
+                });
+            }
+        }
+
+        function createReviewElement(review) {
+            const reviewElement = document.createElement('div');
+            reviewElement.className = 'review';
+            reviewElement.id = `review-${review.id}`;
+
+            const companyName = createReviewSection('Company', review.companyName);
+            const pros = createReviewSection('Pros', review.pros);
+            const cons = createReviewSection('Cons', review.cons);
+            const rating = createReviewSection('Rating out of  5 is:', review.rating);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-button';
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => {
+                deleteReview(review.id);
+            });
+
+            reviewElement.appendChild(companyName);
+            reviewElement.appendChild(pros);
+            reviewElement.appendChild(cons);
+            reviewElement.appendChild(rating);
+            reviewElement.appendChild(deleteButton);
+
+            return reviewElement;
+        }
+
+        function createReviewSection(title, content) {
+            const section = document.createElement('p');
+            section.innerHTML = `<h1>${title}</h1>: ${content}`;
+            return section;
+        }
+
+        async function deleteReview(id) {
+            try {
+                const response = await axios.delete(`http://localhost:3000/delete-review/${id}`);
+                const reviewElement = document.getElementById(`review-${id}`);
+                if (reviewElement) {
+                    reviewElement.remove();
+                }
+            } catch (error) {
+                console.error('Error deleting review:', error);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Company</title>
+    <link rel="stylesheet" href="./css/index2.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/public/index.html">Submit Review</a>
+                </li>
+                <li>
+                    <a href="/public/index1.html">Watch All Reviews</a>
+                </li>
+                <li>
+                    <a href="/public/index2.html">Search Review</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <br>
+    <br>
+    <h1 id="heading">Search Company</h1>
+    <form id="searchForm" action="/search-company/search" method="GET">
+        <label for="searchCompanyName">Company Name:</label>
+        <input type="text" id="searchCompanyName" name="name" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="searchResults"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const searchForm = document.getElementById('searchForm');
+        const searchCompanyNameInput = document.getElementById('searchCompanyName');
+        const searchResultsContainer = document.getElementById('searchResults');
+    
+        
+        const apiBaseUrl = 'http://localhost:3000'; 
+    
+        searchForm.addEventListener('submit', searchReview)
+
+
+        async  function searchReview(event){
+          
+            event.preventDefault();
+    
+            const searchQuery = searchCompanyNameInput.value;
+    
+            try {
+                const response = await axios.get(`${apiBaseUrl}/search-company/search?name=${searchQuery}`);
+    
+                const company = response.data;
+    
+                if (!company) {
+                    searchResultsContainer.textContent = 'Company not found.';
+                } else {
+                    searchResultsContainer.innerHTML = `
+                        <h1>${company.companyName}</h1>
+                        <p><h2>Pros:</h2>: ${company.pros}</p>
+                        <p><h2>cons:</h2>: ${company.cons}</p><br><br>
+                        <p><h3>Rating </h3>out of 5 is: ${company.rating}</p>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error searching for company:', error);
+                searchResultsContainer.textContent = 'Error searching for company.';
+            }
+        
+
+        }
+    </script>
+    
+</body>
+</html>
