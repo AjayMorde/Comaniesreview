@@ -68,7 +68,7 @@
             const selectedRating = Array.from(ratingInputs).find(input => input.checked);
     
             if (!selectedRating) {
-                alert('Please select a rating.');
+                alert('Please select THE rating.');
                 return;
             }
     
@@ -78,7 +78,7 @@
                 cons: consInput.value,
                 rating: selectedRating.value,
             };
-    
+            
             sendReviewData(reviewData);
         }
     

@@ -12,7 +12,7 @@ const searchCompany = async (req, res) => {
       return res.status(404).json({ message: 'Company not found' });    
     }
 
-    // Send the company details as a JSON response
+    
     res.status(200).json({
       companyName: company.companyName,
       pros: company.pros,
@@ -20,10 +20,10 @@ const searchCompany = async (req, res) => {
       rating: company.rating,
     });
   } catch (error) {
-    console.error('Error searching for company:', error);
+    console.error('Error:', error);
     res
       .status(500)
-      .json({ error: 'An error occurred while searching for the company' });
+      .json({ error: 'An error occurr' });
   }
 };
 
