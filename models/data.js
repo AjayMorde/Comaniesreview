@@ -1,6 +1,6 @@
 
 const Sequelize = require('sequelize');
-const sequelize = require('./database'); 
+const sequelize = require('../connection/database'); 
 
 const Review = sequelize.define('Review', {
   id: {

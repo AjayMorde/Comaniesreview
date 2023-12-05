@@ -1,4 +1,4 @@
-const Review=require('../connection/data');
+const Review=require('../models/data');
 
 exports.showAllReviews = async (req, res) => {
     try {

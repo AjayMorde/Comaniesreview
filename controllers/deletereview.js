@@ -1,4 +1,4 @@
-const Review = require('../connection/data');
+const Review=require('../models/data');
 
 
 const deleteReview= async (req, res) => {

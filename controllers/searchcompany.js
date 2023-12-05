@@ -1,4 +1,4 @@
-const Review = require('../connection/data');
+const Review=require('../models/data');
 
 const searchCompany = async (req, res) => {
   const searchQuery = req.query.name;
